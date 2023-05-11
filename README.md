@@ -1,2 +1,2 @@
-# canel-specs
+# Spécification du produit CANEL
 spécifications canel
