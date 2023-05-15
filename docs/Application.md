@@ -1,11 +1,23 @@
 # Gestion des Applications
 
+## Modèles de données
+
+### Vue globale
+
+```mermaid
+graph LR
+App[Application] -- 1:n --> Inst[Instance]
+App -- 0:n --> App
+Inst -- n:1 --> Env[Environnement]
+App -- 1:n --> Conf[Conformité] -- n:1 --> TypeConf[Type Conformité]
+```
+
+### Objet Application
+
 Une application, un applicatif ou encore une appli, une app est, dans le domaine informatique, un programme (ou un ensemble logiciel) directement utilisé pour réaliser une tâche, ou un ensemble de tâches élémentaires d'un même domaine ou formant un tout (Source: Wikipedia).
 Une application peut être composée de sous-applications. Ces sous-applications sont aussi considérées comme des applications.
 
-L'application est l'objet centrale du microservice Applications du service.
-
-## Propriétés de l'objet Application
+L'application est l'objet central du microservice Applications du service.
 
 - **nom** de l'application [obligatoire]
 - **Statut** de l'application [obligatoire] - Enum [En construction, En production, En cours de retrait, Mise en extinction, Décommissionnée, Identifiée dans la trajectoire] - A REVOIR: la liste pose question, et doit être alignée avec les statuts des instances.
@@ -28,7 +40,7 @@ L'application est l'objet centrale du microservice Applications du service.
 - données de **création** [obligatoire] - auteur et date de création
 - données de **modification** [facultatif] - auteur et date de modification
 
-## Propriétés de l'objet Rôle
+### Objet Rôle
 
 Un rôle associe un acteur à une application. Un rôle permet de définir l'implication d'un acteur dans une application, voire dans le cycle de vie du produit susjacent.
 
@@ -39,7 +51,7 @@ Un rôle associe un acteur à une application. Un rôle permet de définir l'imp
 - données de **création** [obligatoire] - auteur et date de création
 - données de **modification** [facultatif] - auteur et date de modification
 
-## Propriétés de l'objet Acteur
+### Objet Acteur
 
 Un acteur est nécessairement un individu.
 
@@ -52,7 +64,36 @@ Un acteur est nécessairement un individu.
 - **RIO** [facultatif] - A REVOIR: donnée spécifique MI; poour quel usage ?
 - **Type** acteur [facultatif] - Enum [architecte, responsable d'exploitation, responsable metier, responsable MOE, responsable sécurité, responsable technique, souscripteur] - A REVOIR: ces types sont en fait des rôles sur des applications, des projets, ...
 
-## Sequence de création d'une application
+### Objet Conformité
+
+L'objet Conformité décrit l'état de mise en conformité d'une application par rapport à une contrainte réglementaire ou normative.
+Pour être exact, il devrait concerné une version précise de l'application, voire une instance déployée, et non l'application dans son ensemble. Toutefois, pour des raisons de maintenabilité du modèle, nous associons cet objet directement à l'objet Application.
+
+- lien vers une **Application** [obligatoire]
+- lien vers un **Type de Conformité** [obligatoire]
+- **Niveau de conformité** [obligatoire] un peu compliqué, car cela peut dépendre du type de conformité concerné; une homologation permet un niveau APE, Standard,  ... tandis que le DSFR entrainera un pourcentage ...
+- **Date Audit** [facultatif] ne précise pas la nature de l'audit pour offrir plus de flexibilité
+- **Statut Audit** [obligatoire] - Enum[N/A,  Non réalisé, En cours, Validé, Rejeté]
+	- **_N/A_**: pas d'audit requis pour le type de conformité concerné
+	- **_Non réalisé_**: audit requis, mais pas encore réalisé
+	- **_En cours_**: audit en cours de réalisation A REVOIR:  statut un peu fin à maintenir
+	- **_Validé_**: l'audit est terminé, et considéré comme valide (ce qui peut être contextuel)
+	- **_Rejeté_**: l'audit est terminé, mais son résultat nécessite des adaptations
+- **Date décision conformité** [facultatif]
+- **Date échéance conformité** [facultatif] Mais devrait être renseigné dès que l'information existe
+
+### Objet Type Conformité
+
+Les types de conformité listent les différentes réglementations structurant les produits numériques produits et exploités.
+La distinction via un objet distinct permet de disposer d'une liste des contraintes qui soit évolutive.
+
+- **Label** [obligatoire] Libellé court du type de conformité - clé primaire de l'objet (ex: RGAA, DSFR, RSSI, ...)
+- **Description** [obligatoire] Description du champ de réglementation applicable
+- **Reference** [facultatif] Lien vers la documentation de référence de la réglementation applicable
+
+## Cas d'usage
+
+### Sequence de création d'une application
 
 La représentation des diagrammes de séquence précise les échanges sous forme d'API entre le console cloud pi native et CANEL.
 
@@ -63,7 +104,7 @@ Pour créer une nouvelle application, il est nécessaire de :
  - de créer l'application si elle n'existe pas
  - d'associer l'application au souscripteur existant ou au nouveau scripteur.
 
-### Creation avec un acteur existant et une application inconnue
+#### Creation avec un acteur existant et une application inconnue
 
 ```mermaid
 sequenceDiagram
@@ -78,7 +119,7 @@ Console->>+CANEL: POST /api/v1/applications {id(acteurs) ,applications, descript
 CANEL-->>-Console: code retour http [201]
 ```
 
-### Creation avec un acteur inconnu et une application inconnue
+#### Creation avec un acteur inconnu et une application inconnue
 
 ```mermaid
 sequenceDiagram
@@ -96,7 +137,7 @@ CANEL-->>-Console: code retour http [201]
 ```
 
 
-## Sequence de modification d'une application
+### Sequence de modification d'une application
 
 La représentation des diagrammes de séquence précise les échanges sous forme d'API entre le console cloud pi native et CANEL.
 
@@ -106,7 +147,7 @@ Pour mettre à jour une nouvelle application existante, il est nécessaire de :
  - de vérifier la présence d'une application
  - d'associer l'application au souscripteur existant ou au nouveau scripteur.
 
-### Mise à jour avec un acteur inconnu et une application existante
+#### Mise à jour avec un acteur inconnu et une application existante
 
 ```mermaid
 sequenceDiagram
@@ -126,7 +167,7 @@ CANEL-->>-Console: code retour http [200]
 Note : ajustement à faire pour le body du endpoint applications concernant l'association application/acteurs
 `
 
-### Mise à jour avec un acteur existant et une application existante
+#### Mise à jour avec un acteur existant et une application existante
 
 ```mermaid
 sequenceDiagram
