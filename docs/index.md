@@ -1,2 +1,2 @@
-- [Applications](./Applications.md)
-- [Environnements](./Environnements.md)
+- [Applications](./Application.md)
+- [Environnements](./Environnement.md)
