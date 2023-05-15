@@ -8,7 +8,7 @@ L'application est l'objet centrale du microservice Applications du service.
 ## Propriétés de l'objet Application
 
 - **nom** de l'application [obligatoire]
-- **Statut** de l'application [obligatoire] - Enum []
+- **Statut** de l'application [obligatoire] - Enum [En construction, En production, En cours de retrait, Mise en extinction, Décommissionnée, Identifiée dans la trajectoire] - A REVOIR: la liste pose question, et doit être alignée avec les statuts des instances.
 - lien vers des **identifiants** [facultatif] - lien vers une liste d'identifiants issus d'autre systèmes
 	- CANEL1
 	- BAI2
@@ -17,12 +17,12 @@ L'application est l'objet centrale du microservice Applications du service.
 - **description** [facultatif] - description de l'application, et plus particulièrement de son rôle fonctionnel.
 - **date de mise en production** [facultatif] - correspond à une date d'ouverture du service aux utilisateurs.
 - **Ministère responsable** [obligatoire]
-- **Organisme** [obligatoire] - A REVOIR: doublon avec le ministère ? Ou les acteurs ?
+- **Organisation projet** [facultatif] - Enum[Agile, Cycle en V, Hybride] - A REVOIR: concerne un projet, pas une application
 - **lien vers application parent** [facultatif] - lien vers l'application contenant cette application, vide si tête de chaine
-- **Sensibilité** [obligatoire] - Même définition que pour les instances - A REVOIR: une même application peut être déployée en NP et en DR; tout dépend des données gérées.
-- **Type application** [obligatoire]
+- **Sensibilité** [obligatoire] - Enum [S1:standard, S2:Sensible, S3:système essentiel, S4: système d'importance vitale] Cette information a des impacts sur le niveau de disponibilité et de confidentialité de l'application
+- **Type application** [obligatoire] - Enum [microservices, n-tiers, plateforme valorisation de données, site internet, site intranet] - A REVOIR: donnée complexe par rapport à cas d'usages
 - **Zone urbanisation** [facultatif] - A REVOIR: externaliser ce concept hors de l'application: l'application peut être définie hors d'un plan d'urbanisme
-- **Conformité** [facultatif] - A REVOIR
+- **Conformité** [facultatif] - A REVOIR - point vers une table conformité, mais qui est à revoir
 - **DevOps** [facultatif] - A REVOIR: définit les outils de la forge utilisée; peu signifiant dans ce contexte
 - **commentaire** [facultatif]
 - données de **création** [obligatoire] - auteur et date de création
@@ -34,7 +34,7 @@ Un rôle associe un acteur à une application. Un rôle permet de définir l'imp
 
 - lien vers une **application** [obligatoire]
 - lien vers un **acteur** [obligatoire]
-- **rôle** [obligatoire]
+- **rôle** [obligatoire] - Enum[architecte, souscripteur] - A REVOIR: enrichir hors des cas DSO stricts 
 - **commentaire** [facultatif]
 - données de **création** [obligatoire] - auteur et date de création
 - données de **modification** [facultatif] - auteur et date de modification
@@ -50,7 +50,7 @@ Un acteur est nécessairement un individu.
 - **habilitation*** [facultatif] - A REVOIR: le niveau d'habilitation est associé aux rôles que l'on peut jouer
 - **nom** [obligatoire]
 - **RIO** [facultatif] - A REVOIR: donnée spécifique MI; poour quel usage ?
-- **Type** acteur [facultatif] - Enum []
+- **Type** acteur [facultatif] - Enum [architecte, responsable d'exploitation, responsable metier, responsable MOE, responsable sécurité, responsable technique, souscripteur] - A REVOIR: ces types sont en fait des rôles sur des applications, des projets, ...
 
 ## Sequence de création d'une application
 
