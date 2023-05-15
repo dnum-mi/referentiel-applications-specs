@@ -29,7 +29,7 @@ Ses attributs sont:
 - un __label__ sur 100 caractères [obligatoire]
 - l'__organisation__ responsable de l'environnement  [obligatoire] - nous recommandons de pas lier cette information à la table "Organisation" pour d'y inclure des opérateurs privés.
 - le __type__ [obligatoire]: Enum [CaaS, IaaS, VM, Serveur]
-- le __niveau__ de confidentialité__ [obligatoire]: Enum [NP, DR]
+- la __sensibilité__ [obligatoire]: Enum [NP, DR]
 - la __localisation__ [facultatif] - texte libre
 - un __commentaire__ [facultatif] - texte libre
 - Les données de __suivi__ (auteur et date de CRU) [obligatoire]
@@ -49,7 +49,8 @@ Ses attributs sont donc:
 	- **_Retrait de service_**: l'instance persiste, mais son usage est limité à des motifs techniques préliminaires à son décommissionnement
 	- **_Décommissionnée_**: l'instance a été retiré de l'environnement technique
 - __Tenant__ [facultatif]: adresse du tenant, ou namespace (dans le cas d'un déploiement K8S)
-- __FIP__ [facultatif]: adresse externe de l'application; A REVOIR: peut-il y avoir plusieurs FIP pour une seule application ?
-- __URL__ [facultatif]: adresse logique de l'application; A REVOIR: il peut y avoir plusieurs URL pour une seule application
+- __FIP__ [facultatif]: adresse externe de l'application; il peut y avoir plusieurs FIP pour une seule application, donc zone de texte libre; remarque: dans le cas d'une application dans un cluster Kubernetes, les FIP sont attribuées au cluster, donc pas de FIP pour l'application.
+- __URL__ [facultatif]: adresse logique de l'application; il peut y avoir plusieurs URL pour une seule application, donc zone de texte libre
+- __Date de déploiement__ [facultatif]: date de dernier 
 - __Commentaire__ [facultatif]
 - Les données de __suivi__ (auteur et date de CRU) [obligatoire]
