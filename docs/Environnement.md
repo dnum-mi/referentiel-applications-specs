@@ -29,7 +29,7 @@ Ses attributs sont:
 - un __label__ sur 100 caractères [obligatoire]
 - l'__organisation__ responsable de l'environnement  [obligatoire] - nous recommandons de pas lier cette information à la table "Organisation" pour d'y inclure des opérateurs privés.
 - le __type__ [obligatoire]: Enum [CaaS, IaaS, VM, Serveur]
-- la __sensibilité__ [obligatoire]: Enum [NP, DR]
+- la __protection__ [obligatoire]: Enum [NP, DR]
 - la __localisation__ [facultatif] - texte libre
 - un __commentaire__ [facultatif] - texte libre
 - Les données de __suivi__ (auteur et date de CRU) [obligatoire]
