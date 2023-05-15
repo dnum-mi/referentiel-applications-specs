@@ -1,23 +1,19 @@
 # Gestion des environnements
 
+## Modèle de données
 
-## Introduction
+### Vue globale
+
+```mermaid
+graph LR
+App[Application] -- 1:n --> Inst[Instance]
+Inst -- n:1 --> Env[Environnement]
+```
+
+### Objet Environnement
 
 Un environnement représente un espace d'hébergement d'applications.
 Il est associée à une application par le concept d'instance.
-
-Une instance est la mise en œuvre d'une application dans un espace d'hébergement.
-Elle est associée à un rôle (production/master, production/slave, pré-production, métrologie, qualification, intégration, développement)
-Elle est associée à un statut (en préparation, en exécution, en retrait de service ou décommissionnée).
-Ce statut est distinct du statut de l'application, même si ce dernier en est dépendant.
-
-Il n'est pas pertinent de recenser par ce type de description les instances logicielles sur poste de travail.
-Si l'on souhaite toute de même tracer un certain niveau de déploiement, il est possible de décrire un environnement "virtuel" représentant les postes de travail, et d'y instancier les applications concernées.
-La maintenance de ce grain d'information me semble toutefois trop fine, et relève plus d'une CMDB que d'un référentiel d'entreprise.
-
-## Modèle de données conceptuel
-
-### Environnement
 
 Un environnement représente un espace d'hébergement physique.
 Par conséquent, chaque datacenter sera représenté par au moins un environnement.
@@ -34,7 +30,16 @@ Ses attributs sont:
 - un __commentaire__ [facultatif] - texte libre
 - Les données de __suivi__ (auteur et date de CRU) [obligatoire]
 
-## Instance
+## Objet Instance
+
+Une instance est la mise en œuvre d'une application dans un espace d'hébergement.
+Elle est associée à un rôle (production/master, production/slave, pré-production, métrologie, qualification, intégration, développement)
+Elle est associée à un statut (en préparation, en exécution, en retrait de service ou décommissionnée).
+Ce statut est distinct du statut de l'application, même si ce dernier en est dépendant.
+
+Il n'est pas pertinent de recenser par ce type de description les instances logicielles sur poste de travail.
+Si l'on souhaite toute de même tracer un certain niveau de déploiement, il est possible de décrire un environnement "virtuel" représentant les postes de travail, et d'y instancier les applications concernées.
+La maintenance de ce grain d'information me semble toutefois trop fine, et relève plus d'une CMDB que d'un référentiel d'entreprise.
 
 Une instance fait le lien entre une application et un environnement.
 Elle porte en outre des caractéristiques propres.
