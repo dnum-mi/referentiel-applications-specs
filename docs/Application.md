@@ -1,5 +1,17 @@
 # Gestion des Applications
 
+**_Version_** : en cours
+**_Discussions_** ouvertes
+- Objet Application: 10
+- Objet Acteur: 3
+- Objet Role: 2
+- Objet Conformité: 1
+**_Thèmes manquants ou à renforcer:_**
+- Cycle de vie des objets
+- stratégie de purge/nettoyage/anonymisation
+- Définition des groupes et droits applicatifs
+
+
 ## Modèles de données
 
 ### Vue globale
