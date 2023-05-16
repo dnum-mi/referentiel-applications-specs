@@ -1,8 +1,10 @@
 # Gestion des environnements
 
 **_Version_** : en cours
+
 **_Discussions_** ouvertes
 - A venir
+
 **_Thèmes manquants ou à renforcer:_**
 - Cycle de vie des objets
 - stratégie de purge/nettoyage/anonymisation
