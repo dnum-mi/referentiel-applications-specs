@@ -20,9 +20,9 @@
 
 ```mermaid
 graph LR
-App[Application] -- 1:n --> Inst[Instance]
+App[Application] -- 1:n --> Role[Rôle]
 App -- 0:n --> App
-Inst -- n:1 --> Env[Environnement]
+Role -- n:1 --> Acteur[Acteur]
 App -- 1:n --> Conf[Conformité] -- n:1 --> TypeConf[Type Conformité]
 ```
 
