@@ -1,5 +1,12 @@
 # Gestion des droits des utilisateurs
 
+**_Version_** : en cours
+
+**_Discussions_** ouvertes
+
+**_Thèmes manquants ou à renforcer:_**
+- Description chainage Authentification-CLIENT-API
+
 ## Hypothèses de départ
 
 Un utilisateur est identifié dans la table "Acteur"
