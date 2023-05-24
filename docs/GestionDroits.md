@@ -28,6 +28,22 @@ Les accès via la Console DSO du Cloud PI Native sont supposés de confiance.
 Les appels d'API à partir de la Console DSO permettent de créer éventuellement un acteur correspondant à l'utilisateur connecté à la console, une application correspondant à l'usage de la console, et d'un rôle de "responsable d'application" reliant cet acteur et cette application.
 **TODO**: mécanisme d'authentification PASSAGE2-CLIENT-API à décrire.
 
+### Diagramme de séquence générique issu du modèle de DAG
+
+```mermaid
+sequenceDiagram
+Navigateur->>+Application: 1.(HTTPS) requête d'accès
+Application-->>-Navigateur: 2.(HTTPS) rediredction vers PASSAGE2 pour authentification
+Navigateur->>+PASSAGE2: 3.(HTTPS) l'utilisateur s'authentifie sur PASSAGE2
+PASSAGE2-->>-Navigateur: 4. (HTTPS) PASSAGE2 redirige le navigateur avec l'"authorization code flow" vers l'application
+Navigateur->>+Application: 5.(HTTPS) Le navigateur de l'utilisateur fournit le code à l'application
+Application-->>+PASSAGE2: 6.(HTTPS) L'application demande l'id token à PASSAGE2 grâce au code
+PASSAGE2-->>-Application: 7. (HTTPS) PASSAGE2 répond en envoyant l'id token
+Application-->>+PASSAGE2: 8.(HTTPS) L'application demande les infos de l'utilisateur
+PASSAGE2-->>-Application: 9. (HTTPS) PASSAGE2 répond en envoyant les infos de l'utilisateur
+Application-->>Navigateur: 10.(HTTPS) l'application ouvre l'accès à l'utilisateur en fonction de ses droits
+```
+
 ## Définition des rôles 
 
 Les rôles disposant de droits sur les objets sont définis dans le classeur Excel [CANEL2 _ Cartographie des utilisateurs du service v0.xlsx](https://resana.numerique.gouv.fr/public/perimetre/consulter/91576?information=7329509)
