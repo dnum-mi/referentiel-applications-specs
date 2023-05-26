@@ -19,11 +19,25 @@
 ### Vue globale
 
 ```mermaid
-graph LR
-App[Application] -- 1:n --> Role[Rôle]
-App -- 0:n --> App
-Role -- n:1 --> Acteur[Acteur]
-App -- 1:n --> Conf[Conformité] -- n:1 --> TypeConf[Type Conformité]
+classDiagram
+direction RL
+
+class Application {
+	}
+class Role {
+	}
+class Acteur {
+	}
+class Conformite {
+	}
+class TypeConformite {
+	}
+
+Application "1" <--> "*" Role
+Application "1" <..> "*" Application
+Role "*" <--> "1" Acteur
+Application "1" <--> "*" Conformite
+Conformite "*" <--> "1" TypeConformite
 ```
 
 ### Objet Application
