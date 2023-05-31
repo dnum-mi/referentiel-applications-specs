@@ -18,14 +18,16 @@ La description de ces droits décrits dans ce document est limitée aux objets s
 - Environnement
 - Instance
 - Données de référence
+
 Les droits sont de type CRUD (Create - Read - Update - Delete)
 
 ## Authentification d'un utilisateur
 
-Un utilisateur doit s'authentifier via Passage2.
-L'authentification via Passage2 doit donc pouvoir être associée à un acteur.
-Les accès via la Console DSO du Cloud PI Native sont supposés de confiance.
-Les appels d'API à partir de la Console DSO permettent de créer éventuellement un acteur correspondant à l'utilisateur connecté à la console, une application correspondant à l'usage de la console, et d'un rôle de "responsable d'application" reliant cet acteur et cette application.
+- Un utilisateur doit s'authentifier via Passage2.
+- L'authentification via Passage2 doit donc pouvoir être associée à un acteur.
+- Les accès via la Console DSO du Cloud PI Native sont supposés de confiance.
+- Les appels d'API à partir de la Console DSO permettent de créer éventuellement un acteur correspondant à l'utilisateur connecté à la console, une application correspondant à l'usage de la console, et d'un rôle de "responsable d'application" reliant cet acteur et cette application.
+
 **TODO**: mécanisme d'authentification PASSAGE2-CLIENT-API à décrire.
 
 ### Diagramme de séquence générique issu du modèle de DAG
@@ -54,7 +56,8 @@ Ces rôles sont:
 - RSSI
 - Administrateur fonctionnel
 
-Il est possible de décrire d'autres rôles dans CANEL pour mieux décrire une application, mais hors des rôles ci-dessus, les autres rôles n'offrent pas de droits sur les données de CANEL.
+Il est possible de décrire d'autres rôles dans CANEL pour mieux décrire une application, mais hors des rôles listés ci-dessus, les autres rôles n'offrent pas de droits sur les données de CANEL.
+
 Si un utilisateur dispose de plusieurs rôles sur un objet, les droits appliqués sont les plus ouverts.
 
 Les droits sont contrôlés au niveau des micro-services CANEL.
