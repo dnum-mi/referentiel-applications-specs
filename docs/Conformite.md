@@ -26,6 +26,10 @@ Cet objet décrit les différents types de conformité applicables à une applic
 - RGAA : réglementation d'accessibilité d'une application
 - RGPD : réglementation de gestion des données à caractère personnel
 
+- **Label** [obligatoire] Libellé court du type de conformité - clé primaire de l'objet (ex: RGAA, DSFR, RSSI, ...)
+- **Description** [obligatoire] Description du champ de réglementation applicable
+- **Reference** [facultatif] Lien vers la documentation de référence de la réglementation applicable
+
 ## Objet ApplicationConformite
 
 La conformité d'une application peut être partielle ou totale selon le type de conformité. Cette contrainte conditionnelle n'est pas gérée dans le modèle.
