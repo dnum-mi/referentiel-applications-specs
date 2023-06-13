@@ -8,7 +8,6 @@
 - Objet ActeurId
 	- Objet ActeurTypeId
 - Objet Role
-- Objet Conformité
 
 **_Thèmes manquants ou à renforcer:_**
 - Cycle de vie des objets
@@ -38,10 +37,6 @@ class ActeurId {
 	}
 class ActeurTypeId {
 	}
-class Conformite {
-	}
-class TypeConformite {
-	}
 
 Application "1" <--> "*" Role
 Application "1" <..> "*" Application
@@ -50,8 +45,6 @@ ApplicationId "*" <--> "1" ApplicationTypeId
 Role "*" <--> "1" Acteur
 Acteur "1" <--> "*" ActeurId
 ActeurTypeId "1" <--> "*" ActeurId
-Application "1" <--> "*" Conformite
-Conformite "*" <--> "1" TypeConformite
 ```
 
 ### Objet Application
@@ -136,33 +129,6 @@ Cet objet a bour but d'associer des identifiants issus de référentiels externe
 Cet objet permet de définir les types d'identifiants associables avec un acteur. Il contient les valeurs suivantes:
 
 - RIO: identifiant interne du Ministère de l'intérieur
-
-### Objet Conformité
-
-L'objet Conformité décrit l'état de mise en conformité d'une application par rapport à une contrainte réglementaire ou normative.
-Pour être exact, il devrait concerné une version précise de l'application, voire une instance déployée, et non l'application dans son ensemble. Toutefois, pour des raisons de maintenabilité du modèle, nous associons cet objet directement à l'objet Application.
-
-- lien vers une **Application** [obligatoire]
-- lien vers un **Type de Conformité** [obligatoire]
-- **Niveau de conformité** [obligatoire] un peu compliqué, car cela peut dépendre du type de conformité concerné; une homologation permet un niveau APE, Standard,  ... tandis que le DSFR entrainera un pourcentage ...
-- **Date Audit** [facultatif] ne précise pas la nature de l'audit pour offrir plus de flexibilité
-- **Statut Audit** [obligatoire] - Enum[N/A,  Non réalisé, En cours, Validé, Rejeté]
-	- **_N/A_**: pas d'audit requis pour le type de conformité concerné
-	- **_Non réalisé_**: audit requis, mais pas encore réalisé
-	- **_En cours_**: audit en cours de réalisation A REVOIR:  statut un peu fin à maintenir
-	- **_Validé_**: l'audit est terminé, et considéré comme valide (ce qui peut être contextuel)
-	- **_Rejeté_**: l'audit est terminé, mais son résultat nécessite des adaptations
-- **Date décision conformité** [facultatif]
-- **Date échéance conformité** [facultatif] Mais devrait être renseigné dès que l'information existe
-
-### Objet Type Conformité
-
-Les types de conformité listent les différentes réglementations structurant les produits numériques produits et exploités.
-La distinction via un objet distinct permet de disposer d'une liste des contraintes qui soit évolutive.
-
-- **Label** [obligatoire] Libellé court du type de conformité - clé primaire de l'objet (ex: RGAA, DSFR, RSSI, ...)
-- **Description** [obligatoire] Description du champ de réglementation applicable
-- **Reference** [facultatif] Lien vers la documentation de référence de la réglementation applicable
 
 ## Cas d'usage
 
