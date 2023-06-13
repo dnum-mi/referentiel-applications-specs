@@ -64,7 +64,7 @@ L'application est l'objet central du microservice Applications du service.
 - **description** [facultatif] - description de l'application, et plus particulièrement de son rôle fonctionnel.
 - **date de mise en production** [facultatif] - correspond à une date d'ouverture du service aux utilisateurs.
 - **Organisme responsable** [obligatoire] - organisme (ministère, agence, ...) propriétaire de l'application
-- **Organisation projet** [facultatif] - Enum[Agile, Cycle en V, Hybride] - A REVOIR: concerne un projet, pas une application
+- **Organisation projet** [facultatif] - Enum[Agile, Cycle en V, Hybride] - Issue #8
 - **lien vers application parent** [facultatif] - lien vers l'application contenant cette application, vide si tête de chaine
 - **Sensibilité** [obligatoire] - Enum [S1:standard, S2:Sensible, S3:système essentiel, S4: système d'importance vitale] Cette information a des impacts sur le niveau de disponibilité et de confidentialité de l'application
 - **Type application** [facultatif] - Enum [microservices, n-tiers, plateforme valorisation de données, site internet, site intranet] - A REVOIR: donnée complexe par rapport à cas d'usages
@@ -78,6 +78,12 @@ L'application est l'objet central du microservice Applications du service.
 ### Objet ApplicationId
 
 Cet objet a pour but de d'associer des identifiants d'application issus de référentiels externes aux objets applications.
+- lien vers une **Application** [obligatoire]
+- lien vers un **ApplicationTypeId** [obligatoire]
+- valeur [obligatoire] valeur de l'identifiant de cette application selon le type
+- **commentaire** [facultatif]
+- données de **création** [obligatoire] - auteur et date de création
+- données de **modification** [facultatif] - auteur et date de modification
 
 #### Objet ApplicationTypeId
 
@@ -86,6 +92,10 @@ Cet objet permet de définir les types d'identifiants associables avec une appli
 - BAI2
 - GSP2
 - PAI
+
+- **label** [obligatoire] libellé court du type d'identifiant
+- **description** [facultatif] description du type d'identifiant, inclut la référence au SI maître
+- lien vers **SI de référence** [facultatif] lien vers le SI gérant les identifiants de ce type
 
 ### Objet Rôle
 
