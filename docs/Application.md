@@ -134,9 +134,9 @@ Cet objet a bour but d'associer des identifiants issus de référentiels externe
 - lien vers un **Acteur** [obligatoire]
 - lien vers un **Type d'Identifiant d'Acteur** [obligatoire]
 
-#### ActeurTypeId
+#### Objet ActeurTypeId
 
-Cet objet permet de définir les types d'identifiants associables avec un acteur. Il contient les valeurs suivantes:
+Cet objet permet de définir les types d'identifiants associables avec un acteur. Par exemple, il peut contenir les valeurs suivantes:
 
 - RIO: identifiant interne du Ministère de l'intérieur
 
