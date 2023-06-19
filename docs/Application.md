@@ -92,6 +92,8 @@ Cet objet permet de définir les types d'identifiants associables avec une appli
 - BAI2
 - GSP2
 - PAI
+ 
+Les attributs de cet objet sont:
 
 - **label** [obligatoire] libellé court du type d'identifiant
 - **description** [facultatif] description du type d'identifiant, inclut la référence au SI maître
@@ -133,12 +135,23 @@ Cet objet a bour but d'associer des identifiants issus de référentiels externe
 
 - lien vers un **Acteur** [obligatoire]
 - lien vers un **Type d'Identifiant d'Acteur** [obligatoire]
+- valeur [obligatoire] valeur de l'identifiant de cet acteur selon le type
+- **commentaire** [facultatif]
+- données de **création** [obligatoire] - auteur et date de création
+- données de **modification** [facultatif] - auteur et date de modification
 
 #### Objet ActeurTypeId
 
 Cet objet permet de définir les types d'identifiants associables avec un acteur. Par exemple, il peut contenir les valeurs suivantes:
 
-- RIO: identifiant interne du Ministère de l'intérieur
+- **RIO**: identifiant interne du Ministère de l'intérieur
+ 
+Les attributs de cet objet sont:
+
+- **label** [obligatoire] libellé court du type d'identifiant
+- **description** [facultatif] description du type d'identifiant, inclut la référence au SI maître
+- lien vers **SI de référence** [facultatif] lien vers le SI gérant les identifiants de ce type
+
 
 ## Cas d'usage
 
