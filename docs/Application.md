@@ -1,12 +1,13 @@
 # Gestion des Applications
 
-**_Version_** : en cours
-
-**_Discussions_** ouvertes
-- Objet Application: 10
-- Objet Acteur: 3
-- Objet Role: 2
-- Objet Conformité: 1
+**_Objet_**
+- Objet Application
+- Objet ApplicationId
+	- Objet ApplicationTypeId
+- Objet Acteur
+- Objet ActeurId
+	- Objet ActeurTypeId
+- Objet Role
 
 **_Thèmes manquants ou à renforcer:_**
 - Cycle de vie des objets
@@ -24,20 +25,26 @@ direction RL
 
 class Application {
 	}
+class ApplicationId {
+	}
+class ApplicationTypeId {
+	}
 class Role {
 	}
 class Acteur {
 	}
-class Conformite {
+class ActeurId {
 	}
-class TypeConformite {
+class ActeurTypeId {
 	}
 
 Application "1" <--> "*" Role
 Application "1" <..> "*" Application
+Application "1" <--> "*" ApplicationId
+ApplicationId "*" <--> "1" ApplicationTypeId
 Role "*" <--> "1" Acteur
-Application "1" <--> "*" Conformite
-Conformite "*" <--> "1" TypeConformite
+Acteur "1" <--> "*" ActeurId
+ActeurTypeId "1" <--> "*" ActeurId
 ```
 
 ### Objet Application
@@ -48,25 +55,49 @@ Une application peut être composée de sous-applications. Ces sous-applications
 L'application est l'objet central du microservice Applications du service.
 
 - **nom** de l'application [obligatoire]
-- **Statut** de l'application [obligatoire] - Enum [En construction, En production, En cours de retrait, Mise en extinction, Décommissionnée, Identifiée dans la trajectoire] - A REVOIR: la liste pose question, et doit être alignée avec les statuts des instances.
-- lien vers des **identifiants** [facultatif] - lien vers une liste d'identifiants issus d'autre systèmes
-	- CANEL1
-	- BAI2
-	- GSP2
-	- PAI
+- **Statut** de l'application [obligatoire] - lien vers une table de référence portant les statuts possibles d'une application:
+	- En Construction: l'application est en cours de d'édition (développement, intégration)
+	- En Production: l'application est déployée sur sa plateforme de production; le service peut être ouvert ou non
+	- En cours de retrait de service: l'application est inscrite sur une trajectoire de retrait, mais est toujours opérationnelle
+	- Retirée du service: l'accès opérationnel à l'application n'est plus ouvert, mais les instances sont maintenues (contraintes techniques ou réglementaires)
+	- Décommissionnée: l'application a été physiquement retirée des plateformes de production
 - **description** [facultatif] - description de l'application, et plus particulièrement de son rôle fonctionnel.
 - **date de mise en production** [facultatif] - correspond à une date d'ouverture du service aux utilisateurs.
-- **Ministère responsable** [obligatoire]
-- **Organisation projet** [facultatif] - Enum[Agile, Cycle en V, Hybride] - A REVOIR: concerne un projet, pas une application
+- **Organisme responsable** [obligatoire] - organisme (ministère, agence, ...) propriétaire de l'application
+- **Organisation projet** [facultatif] - Enum[Agile, Cycle en V, Hybride] - Issue #8
 - **lien vers application parent** [facultatif] - lien vers l'application contenant cette application, vide si tête de chaine
 - **Sensibilité** [obligatoire] - Enum [S1:standard, S2:Sensible, S3:système essentiel, S4: système d'importance vitale] Cette information a des impacts sur le niveau de disponibilité et de confidentialité de l'application
-- **Type application** [obligatoire] - Enum [microservices, n-tiers, plateforme valorisation de données, site internet, site intranet] - A REVOIR: donnée complexe par rapport à cas d'usages
+- **Type application** [facultatif] - Enum [microservices, n-tiers, plateforme valorisation de données, site internet, site intranet] - A REVOIR: donnée complexe par rapport à cas d'usages
 - **Zone urbanisation** [facultatif] - A REVOIR: externaliser ce concept hors de l'application: l'application peut être définie hors d'un plan d'urbanisme
-- **Conformité** [facultatif] - A REVOIR - point vers une table conformité, mais qui est à revoir
-- **DevOps** [facultatif] - A REVOIR: définit les outils de la forge utilisée; peu signifiant dans ce contexte
+- **Conformité** [facultatif]
+- **DevOps** [facultatif]
 - **commentaire** [facultatif]
 - données de **création** [obligatoire] - auteur et date de création
 - données de **modification** [facultatif] - auteur et date de modification
+
+### Objet ApplicationId
+
+Cet objet a pour but de d'associer des identifiants d'application issus de référentiels externes aux objets applications.
+- lien vers une **Application** [obligatoire]
+- lien vers un **ApplicationTypeId** [obligatoire]
+- valeur [obligatoire] valeur de l'identifiant de cette application selon le type
+- **commentaire** [facultatif]
+- données de **création** [obligatoire] - auteur et date de création
+- données de **modification** [facultatif] - auteur et date de modification
+
+#### Objet ApplicationTypeId
+
+Cet objet permet de définir les types d'identifiants associables avec une application. Il contient les valeurs suivantes:
+- CANEL1
+- BAI2
+- GSP2
+- PAI
+ 
+Les attributs de cet objet sont:
+
+- **label** [obligatoire] libellé court du type d'identifiant
+- **description** [facultatif] description du type d'identifiant, inclut la référence au SI maître
+- lien vers **SI de référence** [facultatif] lien vers le SI gérant les identifiants de ce type
 
 ### Objet Rôle
 
@@ -74,7 +105,16 @@ Un rôle associe un acteur à une application. Un rôle permet de définir l'imp
 
 - lien vers une **application** [obligatoire]
 - lien vers un **acteur** [obligatoire]
-- **rôle** [obligatoire] - Enum[architecte, souscripteur] - A REVOIR: enrichir hors des cas DSO stricts 
+- **rôle** [obligatoire] - lien vers une table de référence contenant les rôles possibles pour un acteur sur une application:
+	- Chef de Projet/Product Owner
+	- MOA/Business Owner
+	- Architecte Solution
+	- Architecte Infra
+	- MOE
+	- Resp Production
+	- Support
+	- RSSI
+	- Souscripteur
 - **commentaire** [facultatif]
 - données de **création** [obligatoire] - auteur et date de création
 - données de **modification** [facultatif] - auteur et date de modification
@@ -86,38 +126,32 @@ Un acteur est nécessairement un individu.
 - **Identfiant interne** [obligatoire]
 - **email** [obligatoire] - donnée pivot des échanges applicatifs
 - **actif** [obligatoire] - Vrai ou Faux - A REVOIR: pourrait être porté par le rôle plutôt que par l'acteur
-- **entité rattachement** [facultatif] - fait sens  en interne MI, mais assez peu en dehors
-- **habilitation*** [facultatif] - A REVOIR: le niveau d'habilitation est associé aux rôles que l'on peut jouer
+- **entité rattachement** [facultatif] - Employeur de l'acteur: Ministères décrits par leur libellé long. Pour les sous-traitants, il s'agit de la société d'emploi (ESN)
 - **nom** [obligatoire]
-- **RIO** [facultatif] - A REVOIR: donnée spécifique MI; poour quel usage ?
-- **Type** acteur [facultatif] - Enum [architecte, responsable d'exploitation, responsable metier, responsable MOE, responsable sécurité, responsable technique, souscripteur] - A REVOIR: ces types sont en fait des rôles sur des applications, des projets, ...
 
-### Objet Conformité
+### Objet ActeurId
 
-L'objet Conformité décrit l'état de mise en conformité d'une application par rapport à une contrainte réglementaire ou normative.
-Pour être exact, il devrait concerné une version précise de l'application, voire une instance déployée, et non l'application dans son ensemble. Toutefois, pour des raisons de maintenabilité du modèle, nous associons cet objet directement à l'objet Application.
+Cet objet a bour but d'associer des identifiants issus de référentiels externes à des acteurs. La liste des types d'identifiants est définie via l'objet TypeIdActeur.
 
-- lien vers une **Application** [obligatoire]
-- lien vers un **Type de Conformité** [obligatoire]
-- **Niveau de conformité** [obligatoire] un peu compliqué, car cela peut dépendre du type de conformité concerné; une homologation permet un niveau APE, Standard,  ... tandis que le DSFR entrainera un pourcentage ...
-- **Date Audit** [facultatif] ne précise pas la nature de l'audit pour offrir plus de flexibilité
-- **Statut Audit** [obligatoire] - Enum[N/A,  Non réalisé, En cours, Validé, Rejeté]
-	- **_N/A_**: pas d'audit requis pour le type de conformité concerné
-	- **_Non réalisé_**: audit requis, mais pas encore réalisé
-	- **_En cours_**: audit en cours de réalisation A REVOIR:  statut un peu fin à maintenir
-	- **_Validé_**: l'audit est terminé, et considéré comme valide (ce qui peut être contextuel)
-	- **_Rejeté_**: l'audit est terminé, mais son résultat nécessite des adaptations
-- **Date décision conformité** [facultatif]
-- **Date échéance conformité** [facultatif] Mais devrait être renseigné dès que l'information existe
+- lien vers un **Acteur** [obligatoire]
+- lien vers un **Type d'Identifiant d'Acteur** [obligatoire]
+- valeur [obligatoire] valeur de l'identifiant de cet acteur selon le type
+- **commentaire** [facultatif]
+- données de **création** [obligatoire] - auteur et date de création
+- données de **modification** [facultatif] - auteur et date de modification
 
-### Objet Type Conformité
+#### Objet ActeurTypeId
 
-Les types de conformité listent les différentes réglementations structurant les produits numériques produits et exploités.
-La distinction via un objet distinct permet de disposer d'une liste des contraintes qui soit évolutive.
+Cet objet permet de définir les types d'identifiants associables avec un acteur. Par exemple, il peut contenir les valeurs suivantes:
 
-- **Label** [obligatoire] Libellé court du type de conformité - clé primaire de l'objet (ex: RGAA, DSFR, RSSI, ...)
-- **Description** [obligatoire] Description du champ de réglementation applicable
-- **Reference** [facultatif] Lien vers la documentation de référence de la réglementation applicable
+- **RIO**: identifiant interne du Ministère de l'intérieur
+ 
+Les attributs de cet objet sont:
+
+- **label** [obligatoire] libellé court du type d'identifiant
+- **description** [facultatif] description du type d'identifiant, inclut la référence au SI maître
+- lien vers **SI de référence** [facultatif] lien vers le SI gérant les identifiants de ce type
+
 
 ## Cas d'usage
 
