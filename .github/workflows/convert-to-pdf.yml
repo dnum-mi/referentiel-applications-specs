@@ -1,13 +1,15 @@
 name: Docs to PDF
 # This workflow is triggered on pushes to the repository.
-on:
-  push:
-    branches:
-      - main
+on: 
+  workflow_dispatch
+  # YMLS 20230621: passage en mode manuel du workflow
+  # push:
+    # branches:
+      # - main
     # Paths can be used to only trigger actions when you have edited certain files, such as a file within the /docs directory
-    paths:
-      - 'docs/**.md'
-      - 'docs/images/**'
+    # paths:
+      # - 'docs/**.md'
+      # - 'docs/images/**'
 
 jobs:
   converttopdf:
