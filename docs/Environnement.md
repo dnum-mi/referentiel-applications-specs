@@ -33,13 +33,13 @@ Par conséquent, dans le cas de l'offre Cloud PI Native, nous aurons un environn
 De même, l'offre IaaS de Cloud PI Gen2 constitue un plusieurs environnements, selon le nombre de datacenters portant cette capacité.
 
 Ses attributs sont:
-- un __label__ sur 100 caractères [obligatoire]
-- l'__organisation__ responsable de l'environnement  [obligatoire] - nous recommandons de pas lier cette information à la table "Organisation" pour d'y inclure des opérateurs privés.
+- un __label__ sur 100 caractères [obligatoire, unique]
+- l'__organisation__ responsable de l'environnement  [obligatoire] - nous recommandons de pas lier cette information à la table "Organisation" pour éviter d'y inclure des opérateurs privés.
 - le __type__ [obligatoire]: Enum [CaaS, IaaS, VM, Serveur]
 - la __protection__ [obligatoire]: Enum [NP, DR] - A REVOIR: à rapprocher avec pratiques SDAIT
 - la __localisation__ [facultatif] - texte libre
 - un __commentaire__ [facultatif] - texte libre
-- Les données de __suivi__ (auteur et date de CRU) [obligatoire]
+- Les données de __suivi__ (auteur et date de creation/modification) [obligatoire]
 
 ## Objet Instance
 
@@ -64,9 +64,9 @@ Ses attributs sont donc:
 	- **_Production_**: l'instance est complète, et est disponible pour les usages relatifs à son rôle
 	- **_Retrait de service_**: l'instance persiste, mais son usage est limité à des motifs techniques préliminaires à son décommissionnement
 	- **_Décommissionnée_**: l'instance a été retiré de l'environnement technique
-- __Tenant__ [facultatif]: adresse du tenant, ou namespace (dans le cas d'un déploiement K8S)
+- __Tenant__ [facultatif]: adresse du tenant, ou namespace (dans le cas d'un déploiement K8S), cette donnée doit être unique si elle est renseignée
 - __FIP__ [facultatif]: adresse externe de l'application; il peut y avoir plusieurs FIP pour une seule application, donc zone de texte libre; remarque: dans le cas d'une application dans un cluster Kubernetes, les FIP sont attribuées au cluster, donc pas de FIP pour l'application.
 - __URL__ [facultatif]: adresse logique de l'application; il peut y avoir plusieurs URL pour une seule application, donc zone de texte libre
-- __Date de déploiement__ [facultatif]: date de dernier 
+- __Date de déploiement__ [facultatif]: date de dernier déploiement
 - __Commentaire__ [facultatif]
-- Les données de __suivi__ (auteur et date de CRU) [obligatoire]
+- Les données de __suivi__ (auteur et date de création et modification) [obligatoire]
