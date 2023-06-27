@@ -68,8 +68,8 @@ _Remarque du 23/05/2023: l'objet "Portefeuille" n'est pas décrit; le rôle de G
 
 |                              | Acteur |  Rôle  | Application | Conformité | Environnement | Instance | Données de référence |
 |------------------------------|--------|--------|-------------|------------|---------------|----------|----------------------|
-|  **Responsable d'application**   |   R    | CRU sur ses applications | CRU sur ses applications | CRU sur ses applications |     R         | CRU sur ses applications |         R            |
-| **Gestionnaire de portefeuille** |   R    | CRU sur ses applications | CRU sur ses applications | CRU sur ses applications |     R         | CRU sur ses applications |         R            |
+|  **Responsable d'application**   | CRU sur ses applications | CRU sur ses applications | CRU sur ses applications | CRU sur ses applications |     R         | CRU sur ses applications |         R            |
+| **Gestionnaire de portefeuille** | CRU sur ses applications | CRU sur ses applications | CRU sur ses applications | CRU sur ses applications |     R         | CRU sur ses applications |         R            |
 |   **Architecte d'Entreprise**    |  CRU   |  CRU   |     CRU     |    CRU     |    CRU        |   CRU    |         R            |
-|            **RSSI**              |   R    |   R    |      R      |    CRU     |     R         |    R     |         R            |
-|  **Administrateur fonctionnel**  |  CRU   |   R    |      R      |     R      |     R         |    R     |        CRUD          |
+|            **RSSI**              |   R    |   R    |      R      |    CRU     |     R         |    R     | R + CRU sur Conformité |
+|  **Administrateur fonctionnel**  |  CRUD   |   R    |      R      |     R      |     R         |    R     |        CRUD          |
