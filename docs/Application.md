@@ -75,6 +75,20 @@ L'application est l'objet central du microservice Applications du service.
 - données de **création** [obligatoire] - auteur et date de création
 - données de **modification** [facultatif] - auteur et date de modification
 
+#### Unicité
+Dans notre contexte, l'unicité d'une application est contrôlée. Une application est dite unique dés lors qu'elle n'est référencée qu'une seule fois au sein d'un même organisme
+
+Les scénari suivants indiquent les éléments qui peuvent être inscrits dans le référentiel et celui qui est rejeté  :
+|Nom|organismes|actions|etat|
+|----|-------|-----|----|
+|CANEL|MI|enregistré|OK|
+|CANEL|MJ|enregistré|OK|
+|CANEL|MI|tentative d'inscription|KO|
+
+A l'issue du contrôle effectué, le service renvoie au système à l'initiative de la demande :
+- une indication d'enregistrement (etat: OK);
+- une indication de rejet/conflit (etat: KO).
+
 ### Objet ApplicationId
 
 Cet objet a pour but de d'associer des identifiants d'application issus de référentiels externes aux objets applications.
