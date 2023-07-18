@@ -76,7 +76,7 @@ L'application est l'objet central du microservice Applications du service.
 - données de **modification** [facultatif] - auteur et date de modification
 
 #### Unicité
-Dans notre contexte, l'unicité d'une application est contrôlée. Une application est dite unique dés lors qu'elle n'est référencée qu'une seule fois au sein d'un même organisme
+Dans notre contexte, l'unicité d'une application est contrôlée. Une application est dite unique dés lors qu'elle n'est référencée qu'une seule fois pour un même organisme.
 
 Les scénari suivants indiquent les éléments qui peuvent être inscrits dans le référentiel et celui qui est rejeté  :
 |Nom|organismes|actions|etat|
@@ -85,7 +85,7 @@ Les scénari suivants indiquent les éléments qui peuvent être inscrits dans l
 |CANEL|MJ|enregistré|OK|
 |CANEL|MI|tentative d'inscription|KO|
 
-A l'issue du contrôle effectué, le service renvoie au système à l'initiative de la demande :
+A l'issue du contrôle, le service renvoie au système à l'initiative de la demande :
 - une indication d'enregistrement (etat: OK);
 - une indication de rejet/conflit (etat: KO).
 
