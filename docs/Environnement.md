@@ -38,6 +38,7 @@ Ses attributs sont:
 - le __type__ [obligatoire]: Enum [CaaS, IaaS, VM, Serveur]
 - la __protection__ [obligatoire]: Enum [NP, DR] - A REVOIR: à rapprocher avec pratiques SDAIT
 - la __localisation__ [facultatif] - texte libre
+- le __statut__ [obligatire] : Enul [En construction, Actif, Décommissionné]
 - un __commentaire__ [facultatif] - texte libre
 - Les données de __suivi__ (auteur et date de creation/modification) [obligatoire]
 
