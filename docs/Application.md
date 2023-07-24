@@ -67,7 +67,12 @@ L'application est l'objet central du microservice Applications du service.
 - **Organisation projet** [facultatif] - Enum[Agile, Cycle en V, Hybride] - Issue #8
 - **lien vers application parent** [facultatif] - lien vers l'application contenant cette application, vide si tête de chaine
 - **Sensibilité** [obligatoire] - Enum [S1:standard, S2:Sensible, S3:système essentiel, S4: système d'importance vitale] Cette information a des impacts sur le niveau de disponibilité et de confidentialité de l'application
-- **Type application** [facultatif] - Enum [microservices, n-tiers, plateforme valorisation de données, site internet, site intranet] - A REVOIR: donnée complexe par rapport à cas d'usages
+- **Type application** [facultatif] - Enum [Site communication internet, Site communication intranet, Service métier, Service tranverse, Service socle]
+	- Site de communication internet: Système applicatif donc le but est de communiquer des informations à l'extérieur du MIOM; il peut inclure un CMS 
+	- Site de communication intranet: Système applicatif donc le but est de communiquer des informations à l'intérieur du MIOM; il peut inclure un CMS
+	- Service Métier: application à finalité des métiers
+	- Service Transverse: applications utilisables selon les besoins par des utilisateurs ou d'autres applications, mais non obligatoires au regard du service offert
+	- Service Socle: application nécessaire au fonctionnement d'une plateforme, y compris ses moyens d'exploitation
 - **Zone urbanisation** [facultatif] - A REVOIR: externaliser ce concept hors de l'application: l'application peut être définie hors d'un plan d'urbanisme
 - **Conformité** [facultatif]
 - **DevOps** [facultatif]
