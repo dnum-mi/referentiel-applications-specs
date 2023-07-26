@@ -123,9 +123,9 @@ Un rôle associe un acteur à une application. Un rôle permet de définir l'imp
 - date d'**échéance** de l'information [obligatoire] date renseignée automatiquement lors de la mise à jour de cette information. comme <date de mise à jour>+<délai> où le délai est une donnée paramétrée de l'application
 - **commentaire** [facultatif]
 - données de **création** [obligatoire] - auteur et date de création
-- données de **modification** [facultatif] - auteur et date de modification
+- données de **modification** [obligatoire] - auteur et date de modification ; initialisation avec les données de création
 
-10 jours (délai paramétrable) avant l'échéance d'un rôle, un message doit être envoyé aux autres acteurs de l'application soutenue pour les informer de cette échéance.
+10 jours (délai paramétrable) avant l'échéance d'un rôle, un message doit être envoyé aux autres acteurs de l'application soutenue pour les informer de cette échéance. Le contenu du message doit être paramétrable.
 
 ### Objet Acteur
 
@@ -136,12 +136,12 @@ Un acteur est nécessairement un individu.
 - **actif** [obligatoire] - Vrai ou Faux - A REVOIR: pourrait être porté par le rôle plutôt que par l'acteur
 - **entité rattachement** [facultatif] - Employeur de l'acteur: Ministères décrits par leur libellé long. Pour les sous-traitants, il s'agit de la société d'emploi (ESN)
 - **nom** [obligatoire]
-- date d'**échéance** de l'acteur [obligatoire] - date calculée selon kes règles suivantes:
+- date d'**échéance** de l'acteur [obligatoire] - date calculée selon les règles suivantes:
 	- date maximum d'échéance des rôles associés
-	- en cas d'absence de rôle: date de dernière modification de l'acteur
+	- en cas d'absence de rôle: date de dernière modification de l'acteur + délai paramétré des rôles
 - **commentaire** [facultatif] texte libre
 - données de **création** [obligatoire] - auteur et date de création
-- données de **modification** [facultatif] - auteur et date de modification
+- données de **modification** [obligatoire] - auteur et date de modification; initialisation avec les données de création
 
 Un traitement "batch" doit être prévu pour sélectionner tous les acteurs avec une date d'échéance + un délai d'un an (paramétrable), et anonymiser les noms et email.
 
