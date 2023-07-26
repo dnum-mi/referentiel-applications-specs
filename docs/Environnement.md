@@ -59,7 +59,7 @@ Elle porte en outre des caractéristiques propres.
 Ses attributs sont donc:
 - lien vers une __application__ [obligatoire]
 - lien vers un __environnement__ [obligatoire]
-- __rôle__ [obligatoire] : Enum [Consultation, Développement, Production, Formation, Intégration, Formation Développement, Homologation, Livraison, Métrologie, Pré-production, Qualification, Référentiel, Source, Qualification technique, Validation]
+- __rôle__ [obligatoire] : Enum [Consultation, Développement, Production, Formation, Intégration, Formation Développement, Homologation, Livraison, Métrologie, Pré-production, Qualification, Référentiel, Source, Qualification technique, Validation]
 - __statut__ [obligatoire]: Enum [construction, production, retrait de service, décomissionnée]
 	- **_Construction_**: l'instance existe, mais n'est pas terminée. Ce statut ne devrait exister que pour des rôles de développement ou intégration.
 	- **_Production_**: l'instance est complète, et est disponible pour les usages relatifs à son rôle
