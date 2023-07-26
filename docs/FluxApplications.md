@@ -30,7 +30,11 @@ Il peut être décrit comme suit:
 - **Ensemble des données** portées dans le flux (lien 1-n)
     - **_donnée_** [obligatoire] - identifiant de la donnée dans le référentiel des données - en attendant un référentiel de données, on peut indiquer ici un nom de donnée.
     - **_description_** [facultatif] - en attendant un référentiel de données, on peut décrire succinctement la donnée dans ce champ; lorsque le référentiel de données sera validé, cette description reprendra la description du référentiel.
-- **Commentare** [facultatif] - texte libre
+    - **_urlReference_** [facultatif] - URL de la donnée dans le référentiel des données
+- **SensCirculationDonnee** [facultatif] Enum[push, pull]
+	- push = l'application source pousse de la donnée vers la cible
+	- pull = l'application source tire la donnée de la cible 
+- **Commentaire** [facultatif] - texte libre
 - Données de **création** [obligatoire] identité de l'utilisateur créant la ligne, et date de la création
 - Données de **modification** [obligatoire] identité de l'utilisateur créant la ligne, et date de la création - par défaut égal aux données de création
 
