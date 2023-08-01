@@ -67,7 +67,12 @@ L'application est l'objet central du microservice Applications du service.
 - **Organisation projet** [facultatif] - Enum[Agile, Cycle en V, Hybride] - Issue #8
 - **lien vers application parent** [facultatif] - lien vers l'application contenant cette application, vide si tête de chaine
 - **Sensibilité** [obligatoire] - Enum [S1:standard, S2:Sensible, S3:système essentiel, S4: système d'importance vitale] Cette information a des impacts sur le niveau de disponibilité et de confidentialité de l'application
-- **Type application** [facultatif] - Enum [microservices, n-tiers, plateforme valorisation de données, site internet, site intranet] - A REVOIR: donnée complexe par rapport à cas d'usages
+- **Type application** [facultatif] - Enum [Site communication internet, Site communication intranet, Service métier, Service tranverse, Service socle]
+	- Site de communication internet: Système applicatif donc le but est de communiquer des informations à l'extérieur du MIOM; il peut inclure un CMS 
+	- Site de communication intranet: Système applicatif donc le but est de communiquer des informations à l'intérieur du MIOM; il peut inclure un CMS
+	- Service Métier: application à finalité des métiers
+	- Service Transverse: applications utilisables selon les besoins par des utilisateurs ou d'autres applications, mais non obligatoires au regard du service offert
+	- Service Socle: application nécessaire au fonctionnement d'une plateforme, y compris ses moyens d'exploitation
 - **Zone urbanisation** [facultatif] - A REVOIR: externaliser ce concept hors de l'application: l'application peut être définie hors d'un plan d'urbanisme
 - **Conformité** [facultatif]
 - **DevOps** [facultatif]
@@ -129,9 +134,12 @@ Un rôle associe un acteur à une application. Un rôle permet de définir l'imp
 	- Support
 	- RSSI
 	- Souscripteur
+- date d'**échéance** de l'information [obligatoire] date renseignée automatiquement lors de la mise à jour de cette information. comme <date de mise à jour>+<délai> où le délai est une donnée paramétrée de l'application
 - **commentaire** [facultatif]
 - données de **création** [obligatoire] - auteur et date de création
-- données de **modification** [facultatif] - auteur et date de modification
+- données de **modification** [obligatoire] - auteur et date de modification ; initialisation avec les données de création
+
+10 jours (délai paramétrable) avant l'échéance d'un rôle, un message doit être envoyé aux autres acteurs de l'application soutenue pour les informer de cette échéance. Le contenu du message doit être paramétrable.
 
 ### Objet Acteur
 
@@ -142,6 +150,14 @@ Un acteur est nécessairement un individu.
 - **actif** [obligatoire] - Vrai ou Faux - A REVOIR: pourrait être porté par le rôle plutôt que par l'acteur
 - **entité rattachement** [facultatif] - Employeur de l'acteur: Ministères décrits par leur libellé long. Pour les sous-traitants, il s'agit de la société d'emploi (ESN)
 - **nom** [obligatoire]
+- date d'**échéance** de l'acteur [obligatoire] - date calculée selon les règles suivantes:
+	- date maximum d'échéance des rôles associés
+	- en cas d'absence de rôle: date de dernière modification de l'acteur + délai paramétré des rôles
+- **commentaire** [facultatif] texte libre
+- données de **création** [obligatoire] - auteur et date de création
+- données de **modification** [obligatoire] - auteur et date de modification; initialisation avec les données de création
+
+Un traitement "batch" doit être prévu pour sélectionner tous les acteurs avec une date d'échéance + un délai d'un an (paramétrable), et anonymiser les noms et email.
 
 ### Objet ActeurId
 

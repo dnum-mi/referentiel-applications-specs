@@ -38,6 +38,7 @@ Ses attributs sont:
 - le __type__ [obligatoire]: Enum [CaaS, IaaS, VM, Serveur]
 - la __protection__ [obligatoire]: Enum [NP, DR] - A REVOIR: à rapprocher avec pratiques SDAIT
 - la __localisation__ [facultatif] - texte libre
+- le __statut__ [obligataire] : Enum [En construction, Actif, Inactif] - valeur par défaut: "Actif"
 - un __commentaire__ [facultatif] - texte libre
 - Les données de __suivi__ (auteur et date de creation/modification) [obligatoire]
 
@@ -58,7 +59,7 @@ Elle porte en outre des caractéristiques propres.
 Ses attributs sont donc:
 - lien vers une __application__ [obligatoire]
 - lien vers un __environnement__ [obligatoire]
-- __rôle__ [obligatoire] : Enum [production/actif, production/passif, pre-production, metrologie, qualification, integration, developpement, formation]
+- __rôle__ [obligatoire] : Enum [Consultation, Développement, Production, Formation, Intégration, Formation Développement, Homologation, Livraison, Métrologie, Pré-production, Qualification, Référentiel, Source, Qualification technique, Validation]
 - __statut__ [obligatoire]: Enum [construction, production, retrait de service, décomissionnée]
 	- **_Construction_**: l'instance existe, mais n'est pas terminée. Ce statut ne devrait exister que pour des rôles de développement ou intégration.
 	- **_Production_**: l'instance est complète, et est disponible pour les usages relatifs à son rôle
