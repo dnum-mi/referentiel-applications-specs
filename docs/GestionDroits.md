@@ -8,11 +8,12 @@
 - Description chainage Authentification-CLIENT-API
 
 ## Hypothèses de départ
-
+Un utilisateur non identifié peut accèder aux informations de bases qui décrivent une application.
+Un utilisateur identifié peut accèder aux informations disponibles selon le rôle qui lui a été attribué. 
 Un utilisateur est identifié dans la table "Acteur"
 La description de ces droits décrits dans ce document est limitée aux objets suivants:
 - Acteur
-- Rôle
+- **Rôle**
 - Application
 - Conformité
 - Environnement
@@ -22,13 +23,22 @@ La description de ces droits décrits dans ce document est limitée aux objets s
 Les droits sont de type CRUD (Create - Read - Update - Delete)
 
 ## Authentification d'un utilisateur
-
 - Un utilisateur doit s'authentifier via Passage2.
-- L'authentification via Passage2 doit donc pouvoir être associée à un acteur.
+- L'authentification via Passage2 doit donc pouvoir être associée à un acteur. Dans le cas contraire, 
 - Les accès via la Console DSO du Cloud PI Native sont supposés de confiance.
 - Les appels d'API à partir de la Console DSO permettent de créer éventuellement un acteur correspondant à l'utilisateur connecté à la console, une application correspondant à l'usage de la console, et d'un rôle de "responsable d'application" reliant cet acteur et cette application.
 
-**TODO**: mécanisme d'authentification PASSAGE2-CLIENT-API à décrire.
+### Mécanisme d'authentification PASSAGE2-CLIENT-API à décrire.
+- Un utilisateur va se connecter et s'authentifier sur PASSAGE2.
+- Le reférentiel des applications lui sera proposé par défaut sur le portail du SSO. 
+- Au premier accès, l'utilisateur n'ayant pas de compte et de droits fins définis sur le service, un accès limité aux informations lui sera donné. 
+- L'utilisateur est inscrit dans la table "Acteur". Il n'est lié a aucun rôle.
+- L'administrateur peut lui préciser son rôle.
+  
+- Si un même utilisateur se connecte à nouveau au référentiel, une recherche préalable de d'existence de celui-ci est réalisée afin de doublonner les entrées dans la table "Acteur". 
+- Si, au bout d'un mois, l'utilisateur qui a sollicité une première fois le service n'a pas reçu un rôle, ces informations sont effacées de la table.
+
+
 
 ### Diagramme de séquence générique issu du modèle de DAG
 
@@ -43,7 +53,7 @@ Application-->>+PASSAGE2: 6.(HTTPS) L'application demande l'id token à PASSAGE2
 PASSAGE2-->>-Application: 7. (HTTPS) PASSAGE2 répond en envoyant l'id token
 Application-->>+PASSAGE2: 8.(HTTPS) L'application demande les infos de l'utilisateur
 PASSAGE2-->>-Application: 9. (HTTPS) PASSAGE2 répond en envoyant les infos de l'utilisateur
-Application-->>Navigateur: 10.(HTTPS) l'application ouvre l'accès à l'utilisateur en fonction de ses droits
+Application-->>Navigateur: 10.(HTTPS) l'application ouvre l'accès à l'utilisateur en fonction de ses droits (en cas de d'utilisateur sans droits connus, attribution d'un accès limité aux informations)
 ```
 
 ## Définition des rôles 
@@ -61,6 +71,10 @@ Il est possible de décrire d'autres rôles dans CANEL pour mieux décrire une a
 Si un utilisateur dispose de plusieurs rôles sur un objet, les droits appliqués sont les plus ouverts.
 
 Les droits sont contrôlés au niveau des micro-services CANEL.
+
+## Accès limité aux données 
+Les données accèdées par un utilisateur sans rôles définis sont les suivantes : 
+- Table "Application" : nom, statut, description, organisation responsable
 
 ## Attributions des rôles
 
