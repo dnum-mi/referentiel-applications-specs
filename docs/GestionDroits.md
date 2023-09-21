@@ -30,7 +30,7 @@ Les droits sont de type CRUD (Create - Read - Update - Delete)
 
 ### Mécanisme d'authentification PASSAGE2-CLIENT-API
 
-- Dans le cas d'un accès par PASSAGE2, le reférentiel des applications sera proposé par défaut sur le portail du SSO. Lors de la sollicitation d'un accès par l'utilisateur via le SSO, le service appelant (SSO) est identifié et enregistré par le service sollicité. Le SSO fournit au service accédé les informations de l'utilisateur,
+- Dans le cas d'un accès par PASSAGE2, le reférentiel des applications sera proposé par défaut sur le portail du SSO. Lors de la sollicitation d'un accès par l'utilisateur via le SSO, le service appelant (Frontal CANEL, derrière le SSO) est identifié et enregistré par le service sollicité. Le SSO fournit au service accédé les informations de l'utilisateur,
 - Dans le cas d'une sollicitation directe de l'API, le service appelant (ex. Portail DSO) est identifié et enregistré, et celui-ci fournit les informations de l'utilisateur,
 - L'accès de l'utilisateur est enregistré. Ses informations (adresse mail) sont comparés aux informations de la table 'Acteur'
 - Deux cas de figure : 
