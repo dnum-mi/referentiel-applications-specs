@@ -80,7 +80,7 @@ L'application est l'objet central du microservice Applications du service.
 - données de **création** [obligatoire] - auteur et date de création
 - données de **modification** [facultatif] - auteur et date de modification
 
-#### Unicité
+##### Unicité
 Dans notre contexte, l'unicité d'une application est contrôlée. Une application est dite unique dés lors qu'elle n'est référencée qu'une seule fois pour un même organisme.
 
 Les scénari suivants indiquent les éléments qui peuvent être inscrits dans le référentiel et celui qui est rejeté  :
@@ -93,6 +93,19 @@ Les scénari suivants indiquent les éléments qui peuvent être inscrits dans l
 A l'issue du contrôle, le service renvoie au système à l'initiative de la demande :
 - une indication d'enregistrement (etat: OK);
 - une indication de rejet/conflit (etat: KO).
+
+#### Requirements (lang:EN)
+
+|  ReqID  |  Context | Requirement Description | Comments |
+|---------|----------|-------------------------|----------|
+| APP-001 | POST     | The applicationId is generated while application recording in DB. |  |
+| APP-002 | GET      | Answer contains all direct attributes of application object. Children applications [enfantsApplication] is an array of applications with only the direct attributes. Parent application [parentApplication] is an application object with only its direct attributes. CodeApplication [codeApplication] is an array of external codes applicable to the current application object. Roles [acteurRoles] is an array of roles, where the organisation is always filled. If the actor is filled, the organisation is the actor's one. Incoming and Output flows [fluxEntrant and fluxSortant] is an array of flow objects  with the flows direct attributes and either the application object with its direct attributes or the organisation with its direct attributes. Instances [instances] is an array of instance objects with their direct attributes and the environnement object with its direct attributes. Capabilities [capacites] is an array of capabilities directly associated with the current application, described with their direct attributes, the name (and id) of parent capability is existing. Urban Zones [zonesUrbanisme] is an array of urban zone objects directly associated with the current application, described with their direct attributes, the name (and id) of parent zone is existing. Compliance [conformite] is an array of compliance objects with their direct attributes. | This requirement is complex, and covers all the object required independantly of the planification. So it has to be considered in this way |
+| APP-003 | POST/PUT | we must ensure that the applicationName is unique for an organisation; the couple (applicationName+organisationId) is unique |  |
+| APP-004 | POST     | By default, the application status is set as "En construction" (code BLD) |  |
+| APP-005 | POST/PUT | if an actor is associated with an application (via role), but unknown into the DB, it will be created. The existence test is based on the email address. |  |
+| APP-006 | POST/PUT | if an organisation is associated with the application (as owner organisation, via a role, or as couterpart of flow) but unknown into the DB, it will be created. Its existence test is based on the couple (name+parentId) |  |
+| APP-007 | POST/PUT | if a capability is associated with the application, but not existing into the DB, it will be created. The existence test is based on the capability name. | WARNING: we could link an application to the wrong capability, because capabilities could have the same name with different parents. |
+| APP-008 | POST/PUT | a compliance record is created if the complianceType is not existing for this application, either, it is updated - unicity of applicationId+complianceType |  |
 
 ### Objet ApplicationId
 
@@ -159,6 +172,17 @@ Un acteur est nécessairement un individu.
 
 Un traitement "batch" doit être prévu pour sélectionner tous les acteurs avec une date d'échéance + un délai d'un an (paramétrable), et anonymiser les noms et email.
 
+#### Requirements (lang:EN)
+
+|  ReqID  |  Context | Requirement Description | Comments |
+|---------|----------|-------------------------|----------|
+| ACT-001 | POST     | The actorId is generated while application recording in DB. |  |
+| ACT-002 | POST     | Fields name and email are required. |  |
+| ACT-003 | POST/PUT | ValidationDate is calculated as the latest role validationDate associated at the current Actor, or the last creation/update date added with 730 days; the "730" value must be parameterizable (via config file at least) |  |
+| ACT-004 | POST/PUT | An actor can be associated (optional) with external ids. Every id must be unique for a type (actorId+actorCodeType is unique) |  |
+| ACT-005 | POST/PUT | The email is unique into the database |  |
+| ACT-006 | POST/PUT | In case of creation request for an actor, in case of exisyting email into the DB, the found record is updated (no creation). The creation occurs only if there is no actor with the pushed email. |  |
+
 ### Objet ActeurId
 
 Cet objet a bour but d'associer des identifiants issus de référentiels externes à des acteurs. La liste des types d'identifiants est définie via l'objet TypeIdActeur.
@@ -181,5 +205,4 @@ Les attributs de cet objet sont:
 - **label** [obligatoire] libellé court du type d'identifiant
 - **description** [facultatif] description du type d'identifiant, inclut la référence au SI maître
 - lien vers **SI de référence** [facultatif] lien vers le SI gérant les identifiants de ce type
-
 
