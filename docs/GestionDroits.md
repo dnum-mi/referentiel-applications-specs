@@ -85,7 +85,7 @@ Les rôles relatifs aux applications sont:
 - Souscripteur [SOUSC]
 
 Un utilisateur identifié peut disposer de droits issus de ce segment, mais être complété par des droits statutaires. Par défaut, il dispose des droits semi-publics.
-Remarque: l'accès semi-public permet une lecture sur les applications hors SIV ou SIE. Les accès en lecture permettent donc un accès en lecture sur les applications SIV ou SIE auxquelles l'acteur est associé.
+Remarque: l'accès semi-public permet une lecture sur les applications hors SIIV ou SIE. Les accès en lecture permettent donc un accès en lecture sur les applications SIIV ou SIE auxquelles l'acteur est associé.
 
 |                                  | Acteur |           Rôle             |         Application        |         Conformité         | Environnement |          Instance          | Données de référence |
 |----------------------------------|--------|----------------------------|----------------------------|----------------------------|---------------|----------------------------|----------------------|
@@ -105,5 +105,5 @@ Cet accès est donné à un acteur identifié via PASSAGE2 associé à aucun gro
 
 |                 | Acteur | Rôle |     Application     |     Conformité      | Environnement | Instance | Données de référence |
 |-----------------|--------|------|---------------------|---------------------|---------------|----------|----------------------|
-| **Semi-Public** |   -    |   -  | R (Hors SIE et SIV) | R (Hors SIE et SIV) |       -       |    -     |          R           |
+| **Semi-Public** |   -    |   -  | R (Hors SIE et SIIV) | R (Hors SIE et SIIV) |       -       |    -     |          R           |
 
