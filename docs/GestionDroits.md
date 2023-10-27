@@ -14,7 +14,7 @@ Les accès à CANEL sont contrôlés selon trois types de profils:
 
 **Work in progress**
 - Les accès via la Console DSO du Cloud PI Native sont supposés de confiance.
-- Les appels d'API à partir de la Console DSO permettent de créer éventuellement un acteur correspondant à l'utilisateur connecté à la console, une application correspondant à l'usage de la console, et d'un rôle de "responsable d'application" reliant cet acteur et cette application.
+- Les appels d'API à partir de la Console DSO permettent de créer éventuellement un acteur correspondant à l'utilisateur connecté à la console, une application correspondant à l'usage de la console, et d'un rôle de "souscripteur" reliant cet acteur et cette application.
 
 ## Authentification/identification d'un utilisateur
 
