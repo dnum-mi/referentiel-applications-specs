@@ -12,7 +12,7 @@ Les accès à CANEL sont contrôlés selon trois types de profils:
 
 ## Authentification d'une application
 
-**Work in progress : ** The following protocol is not deefoinitive, but allow to progress. Coming evolutions will impact the CANEL API with the use of a token server (API GW ?) allowing the control of token.
+**Work in progress** The following protocol is not definitive, but allow to progress. Coming evolutions will impact the CANEL API with the use of a token server (API GW ?) allowing the control of token.
 
 ### Init
 A JWT token is defined by the CANEL product team, and provided to DSO team: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJBUFBMSSIsIm5hbWUiOiJEU08iLCJpYXQiOjE1MTYyMzkwMjJ9.hBob79fE97VlChR27KFFjTn22OEoEy202TotgfNvntU
@@ -27,7 +27,7 @@ sequenceDiagram
 	participant	DSO
 	participant	API
 	
-	DSO ->> API: HTTP request with JWT tokeninto the header
+	DSO ->> API: HTTP request with JWT token into the header (attr: x-api-key)
 	API ->> API: The API side decode the token
 	API ->> API: Check of data provided by the token
 	API ->> API: Run of the query
