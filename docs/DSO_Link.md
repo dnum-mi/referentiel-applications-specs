@@ -11,23 +11,23 @@ The DSO console is considered as a trusted application, so the authentification 
 To create a new application, the console makes a POST call to CANEL API. Below a sample of JSON as expected. Please take care of comments after the piece of code.    
 ````
 {  
-  longname: "TEST202311141752"  
- 	description: "Fake application to illustrate data which are expected into a POST call from DSO Console"  
- 	organisation: "MI"
-  statut: "BLD"
- 	codeApplication: [{typeCode: "PAI", codeCourt: "TEST"}]  
- 	acteurRoles: [  
+  "longname": "TEST202311141752",  
+ 	"description": "Fake application to illustrate data which are expected into a POST call from DSO Console",  
+ 	"organisation": "MI",
+  "statut": "BLD",
+ 	"codeApplication": [{typeCode: "PAI", codeCourt: "TEST"}],  
+ 	"acteurRoles": [  
  		{  
- 			acteur:{email:"yves-marie.le-saux@interieur.gouv.fr"},  
- 			role:"SOUSC"  
+ 			"acteur":{email:"yves-marie.le-saux@interieur.gouv.fr"},  
+ 			"role":"SOUSC"  
  		}  
- 	]  
- 	instances: [  
+ 	],  
+ 	"instances": [  
  		{  
- 			environnement: { label: "Cloud PI Native" }  
- 			tenant: "the.namespace.that.i.don't.remember.the.pattern"  
- 			role: "D"  
- 			statut: "PRD"  
+ 			"environnement": { "label": "Cloud PI Native" },
+ 			"tenant": "the.namespace.that.i.don't.remember.the.pattern",  
+ 			"role": "D",  
+ 			"statut": "PRD"  
  		}  
  	]  
 }  
