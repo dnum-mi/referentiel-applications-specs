@@ -19,15 +19,15 @@ To create a new application, the console makes a POST call to CANEL API. Below a
  	acteurRoles: [  
  		{  
  			acteur:{email:"yves-marie.le-saux@interieur.gouv.fr"},  
- 			role:"Souscripteur"  
+ 			role:"SOUSC"  
  		}  
  	]  
  	instances: [  
  		{  
  			environnement: { label: "Cloud PI Native" }  
  			tenant: "the.namespace.that.i.don't.remember.the.pattern"  
- 			role: "Développement"  
- 			statut: "Production"  
+ 			role: "D"  
+ 			statut: "PRD"  
  		}  
  	]  
 }  
