@@ -18,8 +18,8 @@ To create a new application, the console makes a POST call to CANEL API. Below a
  	"codeApplication": [{typeCode: "PAI", codeCourt: "TEST"}],  
  	"acteurRoles": [  
  		{  
- 			"acteur":{email:"yves-marie.le-saux@interieur.gouv.fr"},  
- 			"role":"SOUSC"  
+ 			"acteur":{name: "LE SAUX Yves-Marie", email:"yves-marie.le-saux@interieur.gouv.fr"},  
+ 			"role":"owner"  
  		}  
  	],  
  	"instances": [  
@@ -37,7 +37,10 @@ An open question is how to know that an instance is created to update this statu
 - **typeApplication** : cannot be provided by DSO, so will initialized at "SVBUS" by default.
 - **codeApplication** : must be optional; the information can be filled in into the console, but is not mandatory, so ...
 - **acteurRoles** : we are sure that the Console can push, at least one actor (the souscripteur). **But the list can be extended to several actors.**
-in addition, the console does not know the organisation of the actor (case of subcontractors), so if required into the DB, use the application's organisation.
-- **instances** : showed to anticipate the next steps of CANEL.
-- **instances/deploymentDate** : not kown by the console, but manage by the CICD, so ignored from now. Need additoinal work to specify.
+  - **acteur**
+    - the name expected here should be a concatenation of lastname and firstname
+    - in addition, the console does not know the organisation of the actor (case of subcontractors), so if required into the DB, use the application's organisation.
+  - **role** the value expected is the label, not the roleId; we also have to replace the label "souscripteur" by "owner" for the "SOUSC" role
+- **instances** : showed to anticipate the next steps of CANEL, but will be discussed further with Console Team.
+  - **instances/deploymentDate** : not kown by the console, but manage by the CICD, so ignored from now. Need additoinal work to specify.
 
