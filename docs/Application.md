@@ -106,7 +106,9 @@ A l'issue du contrôle, le service renvoie au système à l'initiative de la dem
 | APP-006 | POST/PUT | if an organisation is associated with the application (as owner organisation, via a role, or as couterpart of flow) but unknown into the DB, it will be created. Its existence test is based on the couple (name+parentId) |  |
 | APP-007 | POST/PUT | if a capability is associated with the application, but not existing into the DB, it will be created. The existence test is based on the capability name. | WARNING: we could link an application to the wrong capability, because capabilities could have the same name with different parents. |
 | APP-008 | POST/PUT | a compliance record is created if the complianceType is not existing for this application, either, it is updated - unicity of applicationId+complianceType |  |
-| APP-009 | POST/PUT | the sensitivity attribute, when upgraded (ex.: S1 to S2), has to be propagated to sub applications if the curent sensitivity of thos sub applications is lower than the new value. If the update of this attribute is downgraded (ex: S3 to S2), we don't propagate the update. | When creating a new sub application, the default sensitivity is equal to the parent's one |
+| APP-009 | POST/PUT | the sensitivity attribute, when upgraded (ex.: S1 to S2), has to be propagated to sub applications if the curent sensitivity of those sub applications is lower than the new value. If the update of this attribute is downgraded (ex: S3 to S2), we don't propagate the update. | When creating a new sub application, the default sensitivity is equal to the parent's one |
+| APP-010 | POST/PUT | By default, the typeApplication attribute of application object is valued at "SVBUS". In the case of a sub application component, the typeApplication is by default equal to the parent's one |  |
+
 ### Objet ApplicationId
 
 Cet objet a pour but de d'associer des identifiants d'application issus de référentiels externes aux objets applications.
