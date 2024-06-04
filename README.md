@@ -1,6 +1,6 @@
 # Spécification du produit CANEL
 
-Les spécifications du produit CANEL soint gérés sous GitHub.
+Les spécifications du produit CANEL sont gérées sous GitHub.
 Les évolutions de spécification du produit CANEL sont gérées au travers d'issues, tant pour la création de nouvelles fonctionnalités que pour l'évolution de celles existantes.
 Le cadencement des spécifications suit les itérations de développement, de façon à fluidifier la transformation des spécifications en développement.
 
@@ -14,7 +14,7 @@ I1->>I2: Spécifications I2
 
 ## Cycle de vie des spécifications
 
-Un projet d'élément de spécification est formalisé dans une issue du repository canel-specs. Le traitement des issues de spécification est réalisé via le Kanban dui projet "canel-specs". Ce Kanban comprend les colonnes suivantes:
+Un projet d'éléments de spécification est formalisé dans une issue du repository canel-specs. Le traitement des issues de spécification est réalisé via le Kanban dui projet "canel-specs". Ce Kanban comprend les colonnes suivantes:
 
 ```mermaid
 sequenceDiagram
@@ -27,9 +27,9 @@ Specs Writing->>Review: Les spécifications liées à l'issue<br>ont été trans
 Review->>Done: Les spécifications ont été validées<br>et livrées 
 ```
 
-Lorsque ce projet est stabilisé, l'issue est positionnée dans la colonne "No Status" du kaban de gestion du projet "canel-specs".
+Lorsque ce projet est stabilisé, l'issue est positionnée dans la colonne "No Status" du kanban de gestion du projet "canel-specs".
 
-Au lancement d'une itération de spécification:
+Au lancement d'une itération de spécification :
 - tout ou partie des issues "No Status" sont basculées dans la colonne "Todo" du Kanban.
 - les issues présentes dans la colonne "Done" du Kanban sont retirées du projet.
 - une branche d'évolution de specs est crée pour cette itération, nommée avec la date de fin de l'itération selon la nomenclature SPEC-AAAAMMJJ (ex: SPEC-20230624).
