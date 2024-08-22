@@ -1,6 +1,6 @@
-# Spécification du produit CANEL
+# Spécification du produit referentiel des applications 
 
-Les spécifications du produit CANEL soint gérés sous GitHub.
+Les spécifications du produit référentiel des applications soint gérés sous GitHub.
 Les évolutions de spécification du produit CANEL sont gérées au travers d'issues, tant pour la création de nouvelles fonctionnalités que pour l'évolution de celles existantes.
 Le cadencement des spécifications suit les itérations de développement, de façon à fluidifier la transformation des spécifications en développement.
 
@@ -14,7 +14,7 @@ I1->>I2: Spécifications I2
 
 ## Cycle de vie des spécifications
 
-Un projet d'élément de spécification est formalisé dans une issue du repository canel-specs. Le traitement des issues de spécification est réalisé via le Kanban dui projet "canel-specs". Ce Kanban comprend les colonnes suivantes:
+Un projet d'élément de spécification est formalisé dans une issue du repository referentiel-applications-specs. Le traitement des issues de spécification est réalisé via le Kanban du projet "canel-specs". Ce Kanban comprend les colonnes suivantes:
 
 ```mermaid
 sequenceDiagram
